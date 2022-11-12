@@ -1,0 +1,12 @@
+---
+title: "SpecialNote"
+author: "Kal Sidawi"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+Please ensure the file "household_power_consumption.txt" is in your
+project directory after you download the project from this Git repo
+This file contains the source data for power consumption that is used
+in this assignment and can be obtained by downloading the zip file
+referenced in the main readme.md file
