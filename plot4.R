@@ -1,5 +1,6 @@
-## this script plot3.R produces the plot2.png in the root directory
-## which is the xy plot showing energy sub-metering 1, 2 & 3 vs time
+## this script plot4.R produces the plot4.png in the root directory
+## which contains the previous plots 2 & 3 and adds to it
+## Voltage vs datetime and Global reactive power vs datetime
 ## the statistical data of power consumption is present in the file 
 ## "household_power_consumption.txt"
 ## and is filtered to the target range of Feb 1 and 2 of 2007
@@ -26,16 +27,23 @@ sub <- data.table(DateTime, sub)
 ###############################
 # Data is now ready to be plotted
 ###############################
-par("lab" = c(4, 3, 7))
+
+par("mfcol" = c(2, 2))
+with(sub, plot(y = Global_active_power, x = DateTime, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)"))
+par("lab" = c(3, 4, 7))
 with(sub, plot(y = Sub_metering_1, x = DateTime, type = "l", col = "black", ylim = c(0, 30), xlab = "", ylab = "Energy sub metering"))
 legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), fill = c("black", "red", "blue"))
 par("new" = TRUE)
 with(sub, plot(y = Sub_metering_2, x = DateTime, type = "l", col = "red", ylim = c(0, 30), ann = FALSE, axes = FALSE))
 par("new" = TRUE)
 with(sub, plot(y = Sub_metering_3, x = DateTime, type = "l", col = "blue", ylim = c(0, 30), ann = FALSE, axes = FALSE))
-
+par("new" = FALSE)
+par("lab" = c(3, 7, 7))
+with(sub, plot(Voltage ~DateTime, type = "l", ylim = c(234, 246)))
+par("lab" = c(3, 6, 7))
+with(sub, plot(Global_reactive_power ~DateTime, type = "l", ylim = c(0.0, 0.5)))
 ## copy the plot to a png file
-dev.copy(png, file = "plot3.png")
+dev.copy(png, file = "plot4.png")
 dev.off()
 dev.off()
 
