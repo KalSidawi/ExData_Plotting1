@@ -1,8 +1,9 @@
-## this script plot1.R produces the plot1.png in the root directory
-## which is the histogram showing frequency vs Global Active Power in Kilowatts
+## this script plot2.R produces the plot2.png in the root directory
+## which is the xy plot showing Global Active Power in Kilowatts vs time
 ## the statistical data of power consumption is present in the file 
 ## "household_power_consumption.txt"
 ## and is filtered to the target range of Feb 1 and 2 of 2007
+
 library(data.table)
 library(tibble)
 library(tidyverse)
@@ -30,10 +31,10 @@ sub <- data.table(DateTime, sub)
 ###############################
 # Data is now ready to be plotted
 ###############################
-
-hist(x = sub$Global_active_power, freq = TRUE, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)")
+browser()
+with(sub, plot(y = Global_active_power, x = DateTime, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)"))
 ## copy the plot to a png file
-dev.copy(png, file = "plot1.png")
+dev.copy(png, file = "plot2.png")
 dev.off()
 dev.off()
 
